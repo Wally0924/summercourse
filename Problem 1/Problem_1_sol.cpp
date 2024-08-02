@@ -5,9 +5,12 @@ using namespace std;
 vector<int> GetIndex(vector<int> nums, int target) {
     int left = 0;
     int right = nums.size() - 1;
+    //設定開始及結束Index初始值
     int start = -1;
     int end = -1;
-
+    
+    //Binary Search 左邊界
+    //當left <= right時，代表還有元素可以搜尋，兩者交錯後代表搜尋完畢
     while (left <= right) {
         int mid = left + (right - left) / 2;
         if (nums[mid] >= target) {
@@ -20,6 +23,7 @@ vector<int> GetIndex(vector<int> nums, int target) {
         }
     }
 
+    //Binary Search 右邊界
     left = 0;
     right = nums.size() - 1;
     while (left <= right) {
@@ -33,7 +37,7 @@ vector<int> GetIndex(vector<int> nums, int target) {
             end = mid;
         }
     }
-
+    //若沒找到target，則start及end皆為-1
     return {start, end};
 }
 
